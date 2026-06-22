@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Wrench } from 'lucide-react'
+import { Menu, X, Wrench, UserPlus } from 'lucide-react'
 import Logo from '../ui/Logo'
+import CreateUserModal from '../users/CreateUserModal'
 import { NAV_LINKS } from '../../data/navigation'
 import { SITE } from '../../config/site'
 
@@ -9,6 +10,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('#home')
+  const [userModalOpen, setUserModalOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -94,17 +96,29 @@ export default function Header() {
           })}
         </ul>
 
-        {/* Desktop CTA */}
-        <motion.a
-          href="#services"
-          onClick={() => handleNav('#services')}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-shadow hover:shadow-glow-cyan lg:flex"
-        >
-          <Wrench className="h-4 w-4" />
-          Book Service
-        </motion.a>
+        {/* Desktop CTAs */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <motion.button
+            type="button"
+            onClick={() => setUserModalOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-cyan-300/40 hover:bg-white/10"
+          >
+            <UserPlus className="h-4 w-4" />
+            Create User
+          </motion.button>
+          <motion.a
+            href="#services"
+            onClick={() => handleNav('#services')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-shadow hover:shadow-glow-cyan"
+          >
+            <Wrench className="h-4 w-4" />
+            Book Service
+          </motion.a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -188,6 +202,22 @@ export default function Header() {
                 })}
               </ul>
 
+              <motion.button
+                type="button"
+                onClick={() => {
+                  setOpen(false)
+                  setUserModalOpen(true)
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                whileTap={{ scale: 0.97 }}
+                className="mt-6 flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-4 text-base font-semibold text-white"
+              >
+                <UserPlus className="h-5 w-5" />
+                Create User
+              </motion.button>
+
               <motion.a
                 href="#services"
                 onClick={() => handleNav('#services')}
@@ -195,7 +225,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
                 whileTap={{ scale: 0.97 }}
-                className="mt-6 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-4 text-base font-semibold text-white shadow-glow"
+                className="mt-3 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-4 text-base font-semibold text-white shadow-glow"
               >
                 <Wrench className="h-5 w-5" />
                 Book Service
@@ -208,6 +238,11 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
+
+      <CreateUserModal
+        open={userModalOpen}
+        onClose={() => setUserModalOpen(false)}
+      />
     </motion.header>
   )
 }
