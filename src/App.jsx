@@ -1,6 +1,7 @@
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
+import Products from './components/sections/Products'
 import PlaceholderSection from './components/sections/PlaceholderSection'
 import ScrollProgress from './components/ui/ScrollProgress'
 import FloatingActions from './components/ui/FloatingActions'
@@ -14,12 +15,7 @@ export default function App() {
       <main>
         <Hero />
 
-        <PlaceholderSection
-          id="products"
-          eyebrow="Shop"
-          title="Premium Products"
-          description="Browse our curated range of laptops, desktops, cameras and accessories from the brands you trust."
-        />
+        <Products />
         <PlaceholderSection
           id="services"
           eyebrow="Repair Lab"

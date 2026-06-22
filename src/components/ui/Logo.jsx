@@ -4,8 +4,8 @@ import { SITE } from '../../config/site'
 /**
  * CloudTech brand logo.
  *
- * Renders the cloud + circuit logomark (inline SVG so it scales crisply and
- * inherits brand gradients) with an optional wordmark and tagline.
+ * Renders the laptop logomark (inline SVG so it scales crisply and inherits
+ * brand gradients) with an optional wordmark and tagline.
  *
  * @param {object}  props
  * @param {boolean} [props.showWordmark=true]  Show the "CloudTech" text.
@@ -23,7 +23,10 @@ export default function Logo({
       {showWordmark && (
         <span className="flex flex-col leading-none">
           <span className="text-lg font-extrabold tracking-tight text-white lg:text-xl">
-            Cloud<span className="text-gradient">Tech</span>
+            Cloud
+            <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+              Tech
+            </span>
           </span>
           {showTagline && (
             <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
@@ -36,61 +39,55 @@ export default function Logo({
   )
 }
 
-/** The standalone cloud + circuit logomark. */
+/** The standalone laptop logomark. */
 export function LogoMark({ className = '' }) {
   // Unique gradient id so multiple logos on one page don't collide.
   const gradientId = useId()
 
   return (
     <span className={`relative ${className}`}>
-      <span className="absolute inset-0 -z-10 rounded-xl bg-brand-500/40 blur-lg transition-all duration-500 group-hover:bg-cyan-400/60 group-hover:blur-xl" />
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500 shadow-glow">
+      <span className="absolute inset-0 -z-10 rounded-2xl bg-violet-500/40 blur-lg transition-all duration-500 group-hover:bg-indigo-400/60 group-hover:blur-xl" />
+      <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 shadow-[0_0_40px_-10px_rgba(139,92,246,0.65)] ring-1 ring-white/25">
+        {/* Glossy top highlight */}
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/30 to-transparent" />
         <svg
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           role="img"
           aria-label="CloudTech logo"
-          className="h-6 w-6"
+          className="relative h-7 w-7"
         >
           <defs>
             <linearGradient
               id={gradientId}
-              x1="6"
-              y1="9"
-              x2="42"
-              y2="39"
+              x1="10"
+              y1="12"
+              x2="38"
+              y2="34"
               gradientUnits="userSpaceOnUse"
             >
               <stop stopColor="#ffffff" />
-              <stop offset="1" stopColor="#dbeafe" />
+              <stop offset="1" stopColor="#ede9fe" />
             </linearGradient>
           </defs>
 
-          {/* Cloud body */}
-          <path
-            d="M15 36a9 9 0 0 1-1.4-17.9A12 12 0 0 1 36.2 21 8 8 0 0 1 35 36H15Z"
+          {/* Laptop screen */}
+          <rect
+            x="13"
+            y="12"
+            width="22"
+            height="15"
+            rx="2.5"
             fill={`url(#${gradientId})`}
           />
+          <rect x="16" y="15" width="16" height="9" rx="1" fill="#6d28d9" />
 
-          {/* Circuit detail */}
-          <g
-            stroke="#1a5cf5"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity="0.85"
-          >
-            <path d="M18 27h4l2-3h4" />
-            <path d="M24 27v4" />
-            <path d="M30 24v-3" />
-          </g>
-          <g fill="#1a5cf5">
-            <circle cx="18" cy="27" r="1.8" />
-            <circle cx="30" cy="24" r="1.8" />
-            <circle cx="24" cy="31" r="1.8" />
-            <circle cx="30" cy="21" r="1.6" opacity="0.85" />
-          </g>
+          {/* Laptop base */}
+          <path
+            d="M9 31h30l1.6 3.2a1.5 1.5 0 0 1-1.34 2.17H8.74A1.5 1.5 0 0 1 7.4 34.2L9 31Z"
+            fill={`url(#${gradientId})`}
+          />
         </svg>
       </span>
     </span>

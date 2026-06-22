@@ -40,6 +40,46 @@ body {
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
+  /* Frosted glass panel: translucent fill, soft blur, glossy top highlight
+     and a subtle gradient border via mask. */
+  .glass-card {
+    position: relative;
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.03) 45%,
+      rgba(10, 15, 31, 0.25)
+    );
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 24px 60px -20px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  }
+  /* Animated gradient ring that sits just outside a glass element. */
+  .glass-ring::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(89, 161, 255, 0.7),
+      rgba(34, 211, 238, 0.5),
+      rgba(89, 161, 255, 0)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
   .container-px {
     @apply px-5 sm:px-8 lg:px-12;
   }
