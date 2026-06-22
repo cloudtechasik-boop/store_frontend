@@ -1,0 +1,27 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CloudTech logo">
+  <defs>
+    <linearGradient id="cloudtech-gradient" x1="6" y1="9" x2="42" y2="39" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#327dff" />
+      <stop offset="1" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cloud body -->
+  <path
+    d="M15 36a9 9 0 0 1-1.4-17.9A12 12 0 0 1 36.2 21 8 8 0 0 1 35 36H15Z"
+    fill="url(#cloudtech-gradient)"
+  />
+
+  <!-- Circuit detail -->
+  <g stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <path d="M18 27h4l2-3h4" fill="none" />
+    <path d="M24 27v4" fill="none" />
+    <path d="M30 24v-3" fill="none" />
+  </g>
+  <g fill="#ffffff">
+    <circle cx="18" cy="27" r="1.8" />
+    <circle cx="30" cy="24" r="1.8" />
+    <circle cx="24" cy="31" r="1.8" />
+    <circle cx="30" cy="21" r="1.6" opacity="0.85" />
+  </g>
+</svg>
